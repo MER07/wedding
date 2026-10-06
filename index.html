@@ -52,12 +52,12 @@ nav.top .wrap{display:flex;align-items:center;gap:12px;height:52px}
 
 /* hero */
 .hero{position:relative;text-align:center;padding-block:clamp(170px,40vw,220px) clamp(170px,42vw,250px);overflow:hidden}
-.floral{position:absolute;pointer-events:none;user-select:none;height:auto;max-width:none}
-.hero .floral.a{top:0;right:-14%;width:min(105%,560px);transform:scaleX(-1)}
+.floral{position:absolute;pointer-events:none;user-select:none;height:auto;max-width:none;mix-blend-mode:multiply}
+.hero .floral.a{top:-24px;right:-14%;width:min(105%,560px);transform:scaleX(-1)}
 .hero .floral.b{bottom:0;left:-10%;width:min(95%,460px);transform:scaleX(-1)}
 @media (min-width:900px){
-  .hero{padding-block:150px 190px}
-  .hero .floral.a{right:-2%;width:600px}
+  .hero{padding-block:190px 220px}
+  .hero .floral.a{top:-40px;right:-2%;width:560px}
   .hero .floral.b{left:-2%;width:480px}
 }
 .kicker{color:var(--blue)}
@@ -216,7 +216,7 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
 
 <main id="top">
   <header class="hero wrap">
-    <img class="floral a" src="floral-top.png" alt="">
+    <img class="floral a" src="floral-spray.webp" alt="">
     <p class="tracked kicker" data-t="kicker">We’re getting married</p>
     <h1 class="names"><span>Rita</span><span class="and" data-t="and">and</span><span>Ervin</span></h1>
     <hr class="rule">
@@ -233,7 +233,7 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
       <a class="btn" href="#rsvp" data-t="ctaRsvp">RSVP</a>
       <a class="btn ghost" href="#day" data-t="ctaDay">See the day</a>
     </div>
-    <img class="floral b" src="floral-bottom.png" alt="">
+    <img class="floral b" src="floral-bouquet.webp" alt="">
   </header>
 
   <section class="block wrap" id="day">
@@ -270,10 +270,11 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
         <h3 data-t="v2Name">Reception</h3>
         <p data-t="v2Desc"></p>
         <dl>
-          <dt data-t="venue">Venue</dt><dd data-t="venueVal">Announced here soon</dd>
+          <dt data-t="address">Address</dt><dd>Kosztolányi Dezső tér 2, 1113 Budapest</dd>
           <dt data-t="beforeDinner">Before dinner</dt><dd data-t="beforeDinnerVal"></dd>
           <dt data-t="farewell">Farewell</dt><dd data-t="farewellVal">3:00 AM</dd>
         </dl>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Hemingway+étterem+Kosztolányi+Dezső+tér+2+Budapest" target="_blank" rel="noopener" data-t="openMaps">Open in Maps</a>
       </article>
     </div>
   </section>
@@ -345,7 +346,7 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
 <footer>
   <p class="names-sm">Rita<i data-t="and">and</i>Ervin</p>
   <p data-t="footDate">18 · 09 · 2027 · Budapest</p>
-  <img class="floral" src="floral-bottom.png" alt="">
+  <img class="floral" src="floral-bouquet.webp" alt="">
 </footer>
 
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo">
@@ -370,7 +371,7 @@ const PHOTOS = [ // add src:"photos/xyz.jpg" once photos are published with the 
 const TIMELINE = [ // [hour, minute, icon, title, detail]
   [16,0,"church",{en:"Wedding & christening",hu:"Esküvő és keresztelő"},{en:"Szent Imre Church, Villányi út 25. Please arrive from 3:30 PM.",hu:"Szent Imre-templom, Villányi út 25. Kérjük, 15:30-tól érkezzetek."}],
   [17,15,"camera",{en:"Group pictures",hu:"Csoportképek"},{en:"On the church steps, with family and all of you.",hu:"A templom lépcsőjén, a családdal és veletek."}],
-  [19,0,"cloche",{en:"Dinner reception",hu:"Vacsora"},{en:"Dinner with the people we love most. Venue announced soon.",hu:"Vacsora azokkal, akiket a legjobban szeretünk. A helyszínt hamarosan közöljük."}],
+  [19,0,"cloche",{en:"Dinner reception",hu:"Vacsora"},{en:"At Hemingway Restaurant by the Feneketlen-tó, a short walk from the church.",hu:"A Hemingway étteremben, a Feneketlen-tó partján, pár perc sétára a templomtól."}],
   [21,0,"dance",{en:"Dancing & celebration",hu:"Tánc és mulatság"},{en:"First dance, cake, then the dance floor is yours. The bride’s dance at midnight.",hu:"Nyitótánc, torta, aztán a tánctér a tiétek. Éjfélkor menyecsketánc."}],
   [27,0,"wave",{en:"Farewell",hu:"Búcsú"},{en:"The last song, the last toast, and everyone home safely.",hu:"Utolsó dal, utolsó koccintás, és mindenki épségben haza."}]
 ];
@@ -381,7 +382,7 @@ const FAQ = [
   [{en:"Will the ceremony be in Hungarian or English?",hu:"Milyen nyelven lesz a szertartás?"},{en:"Mainly Hungarian. We’ll make sure our international guests can follow along.",hu:"Főként magyarul, de a külföldi vendégeinkről is gondoskodunk, hogy mindent értsenek."}],
   [{en:"Can I take photos during the ceremony?",hu:"Fotózhatok a szertartáson?"},{en:"We’d love an unplugged ceremony: phones away in the church. Our photographer has it covered, and at the group pictures at 5:15 PM you can snap away.",hu:"Szeretnénk, ha a templomban a telefonok a zsebben maradnának. A fotós mindent megörökít, a 17:15-ös csoportképeknél pedig már bátran fotózhattok."}],
   [{en:"How do I get to the church? Is there parking?",hu:"Hogyan jutok el a templomhoz? Van parkolás?"},{en:"Street parking around Villányi út is limited, so public transport or a taxi is easiest. The M4 metro and many trams stop at Móricz Zsigmond körtér, a short walk away.",hu:"A Villányi út környékén kevés a parkolóhely, ezért tömegközlekedéssel vagy taxival a legegyszerűbb. Az M4-es metró és számos villamos megáll a Móricz Zsigmond körtéren, ahonnan pár perc séta."}],
-  [{en:"Where is the reception?",hu:"Hol lesz a vacsora?"},{en:"We’ll announce the venue here soon. Dinner starts at 7:00 PM.",hu:"A helyszínt hamarosan itt közöljük. A vacsora 19:00-kor kezdődik."}],
+  [{en:"Where is the reception?",hu:"Hol lesz a vacsora?"},{en:"At Hemingway Restaurant, Kosztolányi Dezső tér 2, by the Feneketlen-tó (Bottomless Lake). It’s about a 10-minute walk from the church through the park. Dinner starts at 7:00 PM.",hu:"A Hemingway étteremben (Kosztolányi Dezső tér 2.), a Feneketlen-tó partján. A templomtól kb. 10 perc séta a parkon át. A vacsora 19:00-kor kezdődik."}],
   [{en:"What about gifts?",hu:"Mit hozzunk ajándékba?"},{en:"Your company is the greatest gift. If you’d like to give something more, a contribution towards our new chapter is warmly appreciated.",hu:"A legnagyobb ajándék, ha velünk vagytok. Ha mégis szeretnétek valamivel készülni, közös életünk kezdetéhez való hozzájárulásnak nagyon örülünk."}],
   [{en:"What happens at midnight?",hu:"Mi lesz éjfélkor?"},{en:"Hungarian tradition: the bride changes into a new dress for the menyecsketánc, the bride’s dance, followed by a midnight snack that keeps everyone dancing until the farewell at 3:00 AM.",hu:"Ahogy illik: menyecsketánc a menyasszony új ruhájában, utána éjféli falatok, hogy hajnali 3-ig mindenki bírja."}]
 ];
@@ -395,8 +396,8 @@ const T = {
     venScript:"Where & when",venTitle:"Ceremony & reception",
     v1Kicker:"Wedding & christening",v1Time:"4:00 PM",v1Name:"Szent Imre Church",v1Desc:"We celebrate our marriage and a christening in one ceremony, in the Cistercian church of Szent Imre in Buda.",
     address:"Address",arrive:"Please arrive",arriveVal:"From 3:30 PM",getting:"Getting there",gettingVal:"M4 metro or tram to Móricz Zsigmond körtér, then a short walk",openMaps:"Open in Maps",
-    v2Kicker:"Dinner & dancing",v2Time:"7:00 PM",v2Name:"Reception",v2Desc:"Dinner, our first dance, cake, and a dance floor open until the farewell at 3:00 AM.",
-    venue:"Venue",venueVal:"Announced here soon",beforeDinner:"Before dinner",beforeDinnerVal:"Group pictures at 5:15 PM",farewell:"Farewell",farewellVal:"3:00 AM",
+    v2Kicker:"Dinner & dancing",v2Time:"7:00 PM",v2Name:"Hemingway Restaurant",v2Desc:"By the Feneketlen-tó, a short walk from the church. Dinner, our first dance, cake, and a dance floor open until the farewell at 3:00 AM.",
+    beforeDinner:"Before dinner",beforeDinnerVal:"Group pictures at 5:15 PM",farewell:"Farewell",farewellVal:"3:00 AM",
     galScript:"Our story",galTitle:"Gallery",galNote:"Photos are on their way. After the wedding, the day itself will live here.",openPhoto:"Open photo: ",prev:"Previous",close:"Close",next:"Next",
     rsvpScript:"Will you join us?",rsvpTitle:"RSVP",rsvpLead:"Kindly reply by 1 July 2027. Changed your mind? Send the form again and we’ll use your latest answer.",
     fName:"Your full name",fAnswer:"Your answer",accepts:"Accepts",acceptsSub:"with pleasure",declines:"Declines",declinesSub:"with regret",
@@ -420,8 +421,8 @@ const T = {
     venScript:"Hol és mikor",venTitle:"Szertartás és vacsora",
     v1Kicker:"Esküvő és keresztelő",v1Time:"16:00",v1Name:"Szent Imre-templom",v1Desc:"Házasságkötésünket és egy keresztelőt egy szertartás keretében ünnepeljük a budai ciszterci Szent Imre-templomban.",
     address:"Cím",arrive:"Érkezés",arriveVal:"15:30-tól",getting:"Megközelítés",gettingVal:"M4-es metróval vagy villamossal a Móricz Zsigmond körtérig, onnan pár perc séta",openMaps:"Megnyitás térképen",
-    v2Kicker:"Vacsora és tánc",v2Time:"19:00",v2Name:"Lakodalom",v2Desc:"Vacsora, nyitótánc, torta, és tánc egészen a hajnali 3 órás búcsúig.",
-    venue:"Helyszín",venueVal:"Hamarosan itt közöljük",beforeDinner:"Vacsora előtt",beforeDinnerVal:"17:15-kor csoportképek",farewell:"Búcsú",farewellVal:"03:00",
+    v2Kicker:"Vacsora és tánc",v2Time:"19:00",v2Name:"Hemingway étterem",v2Desc:"A Feneketlen-tó partján, pár perc sétára a templomtól. Vacsora, nyitótánc, torta, és tánc egészen a hajnali 3 órás búcsúig.",
+    beforeDinner:"Vacsora előtt",beforeDinnerVal:"17:15-kor csoportképek",farewell:"Búcsú",farewellVal:"03:00",
     galScript:"Történetünk",galTitle:"Galéria",galNote:"A fotók hamarosan érkeznek. Az esküvő után itt lesznek a nap képei is.",openPhoto:"Fotó megnyitása: ",prev:"Előző",close:"Bezárás",next:"Következő",
     rsvpScript:"Velünk ünnepelsz?",rsvpTitle:"Visszajelzés",rsvpLead:"Kérjük, 2027. július 1-ig jelezz vissza. Ha meggondolod magad, küldd el újra az űrlapot, a legutolsó válaszodat vesszük figyelembe.",
     fName:"Teljes neved",fAnswer:"Válaszod",accepts:"Ott leszek",acceptsSub:"örömmel",declines:"Nem tudok jönni",declinesSub:"sajnos",
