@@ -308,37 +308,25 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
       </fieldset>
       <div id="if-yes" class="grid2">
         <div class="field">
-          <label for="r-meal" data-t="fMeal">Your dinner</label>
-          <select id="r-meal"><option value="fish" data-t="fish">Fish</option><option value="meat" data-t="meat">Meat</option><option value="veg" data-t="veg">Vegetarian</option></select>
+          <label for="r-diet" data-t="fDiet">Food allergies or intolerances</label>
+          <input type="text" id="r-diet" data-tp="dietPh">
         </div>
         <div class="field">
-          <label for="r-count" data-t="fAdults">Adults in your party</label>
-          <select id="r-count"><option value="1" data-t="justMe">Just me</option><option value="2" data-t="mePlus">Me + 1</option></select>
+          <label for="r-kids" data-t="fKids">Are you bringing children?</label>
+          <select id="r-kids"><option value="no" data-t="noOpt">No</option><option value="yes" data-t="yesOpt">Yes</option></select>
+        </div>
+        <div class="field">
+          <label for="r-count" data-t="fPlusQ">Are you bringing a +1?</label>
+          <select id="r-count"><option value="1" data-t="noOpt">No</option><option value="2" data-t="yesOpt">Yes</option></select>
         </div>
         <div class="field" id="plus-name-f" hidden>
           <label for="r-plus" data-t="fPlus">Guest’s full name</label>
           <input type="text" id="r-plus">
         </div>
         <div class="field" id="plus-meal-f" hidden>
-          <label for="r-plus-meal" data-t="fPlusMeal">Guest’s dinner</label>
-          <select id="r-plus-meal"><option value="fish" data-t="fish">Fish</option><option value="meat" data-t="meat">Meat</option><option value="veg" data-t="veg">Vegetarian</option></select>
+          <label for="r-plus-diet" data-t="fPlusDiet">Your guest’s food allergies</label>
+          <input type="text" id="r-plus-diet" data-tp="dietPh">
         </div>
-        <div class="field">
-          <label for="r-kids" data-t="fKids">Children coming with you</label>
-          <select id="r-kids"><option value="0" data-t="none">None</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
-        </div>
-        <div class="field">
-          <label for="r-diet" data-t="fDiet">Allergies or dietary needs</label>
-          <input type="text" id="r-diet" data-tp="dietPh">
-        </div>
-        <div class="field">
-          <label for="r-song" data-t="fSong">A song that gets you dancing</label>
-          <input type="text" id="r-song">
-        </div>
-      </div>
-      <div class="field">
-        <label for="r-msg" data-t="fMsg">A note for Rita &amp; Ervin</label>
-        <textarea id="r-msg"></textarea>
       </div>
       <div class="submit-row"><button class="btn" type="submit" id="r-submit">Send my reply</button></div>
     </form>
@@ -388,7 +376,7 @@ const TIMELINE = [ // [hour, minute, icon, title, detail]
 ];
 const FAQ = [
   [{en:"What should I wear?",hu:"Mi legyen a dresscode?"},{en:"Formal. Mid-September evenings in Budapest can be cool, so bring a light layer for after dinner.",hu:"Elegáns. Szeptember közepén az esték már hűvösek lehetnek, érdemes egy könnyű réteget hozni vacsora utánra."}],
-  [{en:"Are children welcome?",hu:"Jöhetnek a gyerekek?"},{en:"Yes. The day includes a christening, and little ones are part of the celebration. Tell us how many are coming in your RSVP.",hu:"Igen! A nap keresztelővel is jár, a kicsik is az ünnep részei. A visszajelzésben írd meg, hányan jönnek."}],
+  [{en:"Are children welcome?",hu:"Jöhetnek a gyerekek?"},{en:"Yes. The day includes a christening, and little ones are part of the celebration. Let us know in your RSVP if you’re bringing them.",hu:"Igen! A nap keresztelővel is jár, a kicsik is az ünnep részei. A visszajelzésben jelezd, ha hozod őket."}],
   [{en:"Can I bring a plus-one?",hu:"Hozhatok kísérőt?"},{en:"If your invitation names a guest, yes, and you can add them in the RSVP. If you’re not sure, just ask us.",hu:"Ha a meghívód kísérőre is szól, igen, a visszajelzésben megadhatod. Ha bizonytalan vagy, kérdezz bátran."}],
   [{en:"Will the ceremony be in Hungarian or English?",hu:"Milyen nyelven lesz a szertartás?"},{en:"Mainly Hungarian. We’ll make sure our international guests can follow along.",hu:"Főként magyarul, de a külföldi vendégeinkről is gondoskodunk, hogy mindent értsenek."}],
   [{en:"Can I take photos during the ceremony?",hu:"Fotózhatok a szertartáson?"},{en:"We’d love an unplugged ceremony: phones away in the church. Our photographer has it covered, and at the group pictures at 5:15 PM you can snap away.",hu:"Szeretnénk, ha a templomban a telefonok a zsebben maradnának. A fotós mindent megörökít, a 17:15-ös csoportképeknél pedig már bátran fotózhattok."}],
@@ -413,7 +401,7 @@ const T = {
     rsvpScript:"Will you join us?",rsvpTitle:"RSVP",rsvpLead:"Kindly reply by 1 July 2027. Changed your mind? Send the form again and we’ll use your latest answer.",
     fName:"Your full name",fAnswer:"Your answer",accepts:"Accepts",acceptsSub:"with pleasure",declines:"Declines",declinesSub:"with regret",
     fMeal:"Your dinner",fish:"Fish",meat:"Meat",veg:"Vegetarian",fAdults:"Adults in your party",justMe:"Just me",mePlus:"Me + 1",
-    fPlus:"Guest’s full name",fPlusMeal:"Guest’s dinner",fKids:"Children coming with you",none:"None",fDiet:"Allergies or dietary needs",dietPh:"e.g. gluten-free, no nuts",
+    fPlus:"Guest’s full name",fPlusMeal:"Guest’s dinner",fKids:"Children coming with you",none:"None",fDiet:"Food allergies or intolerances",dietPh:"Leave empty if none",fKids:"Are you bringing children?",fPlusQ:"Are you bringing a +1?",fPlusDiet:"Your guest’s food allergies or intolerances",yesOpt:"Yes",noOpt:"No",
     fSong:"A song that gets you dancing",fMsg:"A note for Rita & Ervin",send:"Send my reply",update:"Update my reply",sending:"Sending…",
     needName:"Please add your name so we know who’s replying.",needPlus:"Please add your guest’s name.",
     noStore:"Online replies aren’t switched on yet. Please send your answer to Rita or Ervin directly.",
@@ -438,7 +426,7 @@ const T = {
     rsvpScript:"Velünk ünnepelsz?",rsvpTitle:"Visszajelzés",rsvpLead:"Kérjük, 2027. július 1-ig jelezz vissza. Ha meggondolod magad, küldd el újra az űrlapot, a legutolsó válaszodat vesszük figyelembe.",
     fName:"Teljes neved",fAnswer:"Válaszod",accepts:"Ott leszek",acceptsSub:"örömmel",declines:"Nem tudok jönni",declinesSub:"sajnos",
     fMeal:"Vacsorád",fish:"Hal",meat:"Hús",veg:"Vegetáriánus",fAdults:"Felnőttek száma",justMe:"Csak én",mePlus:"Én + 1 fő",
-    fPlus:"Kísérőd teljes neve",fPlusMeal:"Kísérőd vacsorája",fKids:"Veled érkező gyerekek",none:"Nincs",fDiet:"Ételallergia, étkezési igény",dietPh:"pl. gluténmentes, diómentes",
+    fPlus:"Kísérőd teljes neve",fPlusMeal:"Kísérőd vacsorája",fKids:"Veled érkező gyerekek",none:"Nincs",fDiet:"Ételérzékenység, allergia",dietPh:"Hagyd üresen, ha nincs",fKids:"Gyereket hozol magaddal?",fPlusQ:"Hozol +1 főt magaddal?",fPlusDiet:"Kísérőd ételérzékenysége, allergiája",yesOpt:"Igen",noOpt:"Nem",
     fSong:"Egy dal, amire biztosan táncolsz",fMsg:"Üzenet Ritának és Ervinnek",send:"Válasz elküldése",update:"Válasz módosítása",sending:"Küldés…",
     needName:"Kérjük, add meg a neved, hogy tudjuk, ki válaszol.",needPlus:"Kérjük, add meg a kísérőd nevét.",
     noStore:"Az online visszajelzés még nincs bekapcsolva. Kérjük, jelezz vissza közvetlenül Ritának vagy Ervinnek.",
@@ -594,14 +582,11 @@ function readForm(){
   return {
     name: $("#r-name").value.trim().slice(0,120),
     attending: yes,
-    party: yes ? (two ? 2 : 1) : 0,
-    kids: yes ? Number($("#r-kids").value) : 0,
-    meal: yes ? $("#r-meal").value : null,
-    plusName: two ? $("#r-plus").value.trim().slice(0,120) : "",
-    plusMeal: two ? $("#r-plus-meal").value : null,
     dietary: yes ? $("#r-diet").value.trim().slice(0,300) : "",
-    song: yes ? $("#r-song").value.trim().slice(0,160) : "",
-    message: $("#r-msg").value.trim().slice(0,1000),
+    kids: yes && $("#r-kids").value === "yes",
+    plus: two,
+    plusName: two ? $("#r-plus").value.trim().slice(0,120) : "",
+    plusDiet: two ? $("#r-plus-diet").value.trim().slice(0,300) : "",
     lang,
     updatedAt: new Date().toISOString()
   };
@@ -609,14 +594,11 @@ function readForm(){
 function fillForm(d){
   $("#r-name").value = d.name || "";
   (d.attending === false ? $("#r-no") : $("#r-yes")).checked = true;
-  if (MEAL_KEYS[d.meal]) $("#r-meal").value = d.meal;
-  $("#r-count").value = d.party === 2 ? "2" : "1";
-  $("#r-plus").value = d.plusName || "";
-  if (MEAL_KEYS[d.plusMeal]) $("#r-plus-meal").value = d.plusMeal;
-  $("#r-kids").value = String(Math.min(4, Math.max(0, d.kids || 0)));
   $("#r-diet").value = d.dietary || "";
-  $("#r-song").value = d.song || "";
-  $("#r-msg").value = d.message || "";
+  $("#r-kids").value = d.kids ? "yes" : "no";
+  $("#r-count").value = d.plus ? "2" : "1";
+  $("#r-plus").value = d.plusName || "";
+  $("#r-plus-diet").value = d.plusDiet || "";
   syncForm();
 }
 
@@ -625,7 +607,7 @@ form.addEventListener("submit", async e => {
   e.preventDefault();
   const d = readForm();
   if (!d.name){ status("needName","err"); $("#r-name").focus(); return; }
-  if (d.party === 2 && !d.plusName){ status("needPlus","err"); $("#r-plus").focus(); return; }
+  if (d.plus && !d.plusName){ status("needPlus","err"); $("#r-plus").focus(); return; }
   if (!saveRsvp){ status("noStore","err"); return; }
   const btn = $("#r-submit"); btn.disabled = true; sending = true; submitLabel();
   try {
@@ -652,17 +634,22 @@ applyLang(lang);
 setInterval(tick, 1000);
 
 /* RSVP delivery: answers go to a Google Form (setup in README.md) */
-const GOOGLE_FORM = {
-  action: "", // https://docs.google.com/forms/d/e/<form id>/formResponse
-  fields: { name:"", attending:"", adults:"", plus:"", meal:"", plusmeal:"", kids:"", diet:"", song:"", message:"", lang:"" }
-};
-if (GOOGLE_FORM.action) saveRsvp = async d => {
-  const f = GOOGLE_FORM.fields, body = new URLSearchParams();
-  const put = (k, v) => { if (f[k]) body.append(f[k], v == null ? "" : String(v)); };
-  put("name", d.name); put("attending", d.attending ? "yes" : "no"); put("adults", d.party);
-  put("plus", d.plusName); put("meal", T.en[d.meal] || ""); put("plusmeal", T.en[d.plusMeal] || "");
-  put("kids", d.kids); put("diet", d.dietary); put("song", d.song); put("message", d.message); put("lang", d.lang);
-  await fetch(GOOGLE_FORM.action, { method: "POST", mode: "no-cors", body });
+const GOOGLE_FORM = "https://docs.google.com/forms/d/e/1FAIpQLScTn-phBPvQ1haQd7edurkXADQmBEDzbNDxAL_eq_PCjrDfsQ/formResponse";
+saveRsvp = async d => {
+  const b = new URLSearchParams();
+  // Answers must match the Google Form's Hungarian options exactly, whatever language the guest used
+  const diet = (id, v) => { if (v){ b.append(id, "__other_option__"); b.append(id + ".other_option_response", v); } else b.append(id, "Nincs"); };
+  b.append("entry.2031680929", d.name);                                            // Név
+  b.append("entry.1128537269", d.attending ? "Igen, alig várom!" : "Sajnos nem :("); // Részt tudsz venni?
+  diet("entry.2106382243", d.dietary);                                              // Ételérzékenységed van?
+  b.append("entry.1039142578", d.kids ? "Igen" : "Nem");                            // Gyereket hozol?
+  b.append("entry.269577391", d.plus ? "Igen" : "Nem");                             // Hozol +1 főt?
+  if (d.plus){
+    b.append("entry.1511490165", d.plusName);                                       // +1 neve
+    diet("entry.1395218356", d.plusDiet);                                           // +1 ételérzékenysége
+  }
+  b.append("pageHistory", d.plus ? "0,1,2" : "0,2");                                // sections the guest passed through
+  await fetch(GOOGLE_FORM, { method: "POST", mode: "no-cors", body: b });
   try { localStorage.setItem("re-rsvp", JSON.stringify(d)); } catch {}
 };
 (function restoreReply(){

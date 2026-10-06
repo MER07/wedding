@@ -10,18 +10,23 @@ Kétnyelvű (magyar / angol), visszaszámlálóval, programmal, helyszínekkel, 
 
 ## RSVP bekötése Google Formba
 
-Az oldal saját űrlapja a válaszokat egy Google Formba küldi, onnan egy Google Sheet táblázatba kerülnek.
+Az oldal saját (kétnyelvű) űrlapja a válaszokat az „Esküvői RSVP” Google Formba küldi, onnan a hozzá kapcsolt Google Sheet táblázatba kerülnek.
+A vendég a Google Formot nem látja; bármelyik nyelven tölti ki az oldalt, a Formba mindig a magyar válaszlehetőségek kerülnek.
 
-1. Hozz létre egy új Google Formot (forms.google.com). Vegyél fel **11 kérdést**, mindegyik típusa **Rövid válasz** legyen, és egyik se legyen kötelező:
-   Név · Válasz · Felnőttek · Kísérő neve · Vacsora · Kísérő vacsorája · Gyerekek · Étkezési igény · Dal · Üzenet · Nyelv
-2. A *Válaszok* fülön kattints a **Link a Táblázatokhoz** gombra, hogy a válaszok egy Google Sheetbe menjenek.
-3. A jobb felső **⋮** menüben válaszd az **Előre kitöltött link lekérése** pontot. A kérdésekbe írd be sorban ezeket a szavakat:
-   `name`, `attending`, `adults`, `plus`, `meal`, `plusmeal`, `kids`, `diet`, `song`, `message`, `lang`
-4. Kattints a **Link lekérése**, majd a **Link másolása** gombra.
-5. Ezt a linket kell beírni az `index.html` végén található `GOOGLE_FORM` beállításba
-   (az `action` a link eleje, a `viewform` szót `formResponse`-ra cserélve; a `fields` az `entry.123…` azonosítók).
+Az összerendelés az `index.html` végén, a `GOOGLE_FORM` / `saveRsvp` részben van:
 
-Ha a `GOOGLE_FORM.action` üres, az űrlap kitölthető, de beküldéskor arra kéri a vendéget, hogy közvetlenül jelezzen vissza.
+| Weboldal mezője | Google Form kérdése | Beküldött érték |
+|---|---|---|
+| Teljes neved | Név | szöveg |
+| Ott leszek / Nem tudok jönni | Részt tudsz venni az esküvőnkön? | `Igen, alig várom!` / `Sajnos nem :(` |
+| Ételérzékenység | Ételérzékenységed van? | `Nincs`, vagy az „Egyéb” mezőbe a beírt szöveg |
+| Gyereket hozol? | Gyereket hozol magaddal? | `Igen` / `Nem` |
+| Hozol +1 főt? | Hozol +1 főt magaddal? | `Igen` / `Nem` |
+| Kísérőd neve | Név (2. szakasz) | szöveg |
+| Kísérőd ételérzékenysége | Étel érzékenységed van? (2. szakasz) | `Nincs`, vagy az „Egyéb” szöveg |
+
+**Ha a Google Formon változtatsz** (kérdés vagy válaszlehetőség szövegén, új kérdésen, szakaszokon), az oldalt is igazítani kell, különben a beküldés csendben elveszhet.
+A válaszlehetőségek szövegének (pl. `Igen, alig várom!`) pontosan egyeznie kell.
 
 ## Szerkesztés
 
