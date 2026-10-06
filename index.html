@@ -195,6 +195,20 @@ footer{position:relative;border-top:2px dotted var(--line);text-align:center;pad
 footer .names-sm{font-family:var(--f-display);font-size:2rem;letter-spacing:.1em;text-transform:uppercase;font-weight:300}
 footer .names-sm i{font-family:var(--f-script);font-style:normal;text-transform:none;letter-spacing:0;font-size:1.6rem;margin:0 8px;color:var(--blue)}
 footer p{margin-top:10px;font-size:.7rem;letter-spacing:.3em}
+/* language choice on first visit */
+html.gate-open,html.gate-open body{overflow:hidden}
+.gate{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;padding:24px var(--gutter);overflow:hidden}
+.gate .floral.a{top:-20px;right:-18%;width:min(110%,560px);transform:scaleX(-1)}
+.gate .floral.b{bottom:-10px;left:-14%;width:min(100%,480px);transform:scaleX(-1)}
+.gate-box{position:relative;text-align:center;display:grid;gap:18px;justify-items:center;max-width:420px}
+.gate-names{font-family:var(--f-display);font-weight:300;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(2.2rem,8vw,3.2rem);line-height:1}
+.gate-names i{font-family:var(--f-script);font-style:normal;text-transform:none;letter-spacing:0;font-size:.6em;color:var(--blue);margin:0 .2em}
+.gate-q{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);line-height:2}
+.gate-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(100%,340px);margin-top:6px}
+.gate-btns button{font-family:var(--f-display);font-size:1.35rem;letter-spacing:.06em;padding:16px 10px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:grid;gap:2px;line-height:1.1}
+.gate-btns button small{font-family:var(--f-body);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.gate-btns button:hover,.gate-btns button:focus-visible{background:var(--ink);color:var(--paper)}
+.gate-btns button:hover small,.gate-btns button:focus-visible small{color:var(--paper)}
 footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%) scaleX(-1)}
 </style>
 </head>
@@ -216,6 +230,23 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
     </div>
   </div>
 </nav>
+
+<div class="gate" id="lang-gate" role="dialog" aria-modal="true" aria-labelledby="gate-q">
+  <img class="floral a" src="floral-spray.webp" alt="">
+  <div class="gate-box">
+    <p class="gate-names">Rita<i>&amp;</i>Ervin</p>
+    <p class="gate-q" id="gate-q"><span lang="hu">Válaszd ki a nyelvet</span><br><span lang="en">Choose your language</span></p>
+    <div class="gate-btns">
+      <button type="button" data-lang="hu" lang="hu">Magyar<small>HU</small></button>
+      <button type="button" data-lang="en" lang="en">English<small>EN</small></button>
+    </div>
+  </div>
+  <img class="floral b" src="floral-bouquet.webp" alt="">
+</div>
+<script>
+try { if (/^(hu|en)$/.test(localStorage.getItem("re-lang"))) document.getElementById("lang-gate").hidden = true; else document.documentElement.classList.add("gate-open"); }
+catch { document.documentElement.classList.add("gate-open"); }
+</script>
 
 <main id="top">
   <header class="hero wrap">
@@ -453,8 +484,9 @@ const ICONS = {
 const $ = s => document.querySelector(s);
 const pad = n => String(n).padStart(2,"0");
 let lang = "en";
-try { lang = localStorage.getItem("re-lang") || ""; } catch {}
-if (lang !== "hu" && lang !== "en") lang = (navigator.language || "").toLowerCase().startsWith("hu") ? "hu" : "en";
+let savedLang = null;
+try { savedLang = localStorage.getItem("re-lang"); } catch {}
+lang = savedLang === "hu" || savedLang === "en" ? savedLang : ((navigator.language || "").toLowerCase().startsWith("hu") ? "hu" : "en");
 const t = k => T[lang][k];
 const fmtTime = (h, m) => { h = h % 24; return lang === "hu" ? pad(h) + ":" + pad(m) : ((h % 12) || 12) + ":" + pad(m) + (h < 12 ? " AM" : " PM"); };
 
@@ -649,9 +681,9 @@ form.addEventListener("submit", async e => {
 })();
 
 /* Language */
-function applyLang(l){
+function applyLang(l, persist = true){
   lang = l;
-  try { localStorage.setItem("re-lang", l); } catch {}
+  if (persist) try { localStorage.setItem("re-lang", l); } catch {}
   document.documentElement.lang = l;
   document.querySelectorAll("[data-t]").forEach(el => { const v = T[l][el.dataset.t]; if (typeof v === "string") el.textContent = v; });
   document.querySelectorAll("[data-tp]").forEach(el => el.placeholder = T[l][el.dataset.tp]);
@@ -659,7 +691,26 @@ function applyLang(l){
   tick(); renderTimeline(); renderGalleryText(); renderFaq(); renderStatus(); submitLabel();
 }
 document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang)));
-applyLang(lang);
+applyLang(lang, false);
+
+/* First visit: the guest picks a language before seeing the page */
+(function languageGate(){
+  const gate = $("#lang-gate");
+  if (gate.hidden) return;
+  const btns = [...gate.querySelectorAll("button")];
+  btns.forEach(b => b.addEventListener("click", () => {
+    applyLang(b.dataset.lang);
+    gate.hidden = true;
+    document.documentElement.classList.remove("gate-open");
+  }));
+  gate.addEventListener("keydown", e => {
+    if (e.key !== "Tab") return;
+    const i = btns.indexOf(document.activeElement);
+    e.preventDefault();
+    btns[(i + (e.shiftKey ? -1 : 1) + btns.length) % btns.length].focus();
+  });
+  (btns.find(b => b.dataset.lang === lang) || btns[0]).focus();
+})();
 setInterval(tick, 1000);
 
 /* RSVP delivery: answers go to a Google Form (setup in README.md) */
