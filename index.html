@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="hu">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Rita &amp; Ervin · 18.09.2027 · Szent Imre Church, Budapest">
+<meta name="description" content="Rita és Ervin esküvője · 2027. szeptember 18. · Szent Imre-templom, Budapest">
 <meta property="og:title" content="Rita &amp; Ervin">
-<meta property="og:description" content="18.09.2027 · Szent Imre Church, Budapest">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:description" content="Rita és Ervin esküvője · 2027. szeptember 18. · Szent Imre-templom, Budapest">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%23fff%22%20stroke%3D%22%2356769C%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2230%22%20fill%3D%22%231F1F24%22%3ER%26amp%3BE%3C%2Ftext%3E%3C%2Fsvg%3E">
 <title>Rita &amp; Ervin</title>
@@ -46,6 +47,8 @@ nav.top .wrap{display:flex;align-items:center;gap:12px;height:52px}
 .navlinks::-webkit-scrollbar{display:none}
 .navlinks a{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 8px;white-space:nowrap}
 .navlinks a:hover{color:var(--ink)}
+@media (max-width:480px){.navlinks a{letter-spacing:.12em;padding:8px 6px}}
+@media (max-width:640px){.navlinks{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);padding-right:28px}}
 .navlinks a{transition:color .2s,box-shadow .2s}
 .navlinks a.on{color:var(--ink);box-shadow:inset 0 -1px 0 var(--ink)}
 section[id]{scroll-margin-top:56px}
@@ -214,15 +217,15 @@ footer .floral{bottom:0;left:50%;width:min(85%,400px);transform:translateX(-50%)
 </head>
 <body>
 
-<nav class="top" aria-label="Sections">
+<nav class="top" aria-label="Szakaszok" data-ta="ariaNav">
   <div class="wrap">
     <a class="mono" href="#top">R<i>&amp;</i>E</a>
     <div class="navlinks">
-      <a href="#day" data-t="navDay">Our day</a>
-      <a href="#venues" data-t="navVenues">Venues</a>
-      <a href="#gallery" data-t="navGallery">Gallery</a>
-      <a href="#rsvp" data-t="navRsvp">RSVP</a>
-      <a href="#faq" data-t="navFaq">FAQ</a>
+      <a href="#day" data-t="navDay">Program</a>
+      <a href="#venues" data-t="navVenues">Helyszínek</a>
+      <a href="#gallery" data-t="navGallery">Galéria</a>
+      <a href="#rsvp" data-t="navRsvp">Visszajelzés</a>
+      <a href="#faq" data-t="navFaq">Kérdések</a>
     </div>
     <div class="lang" role="group" aria-label="Language / Nyelv">
       <button type="button" id="lang-hu" data-lang="hu" aria-pressed="false" lang="hu">HU</button>
@@ -251,30 +254,30 @@ catch { document.documentElement.classList.add("gate-open"); }
 <main id="top">
   <header class="hero wrap">
     <img class="floral a" src="floral-spray.webp" alt="">
-    <p class="tracked kicker" data-t="kicker">We’re getting married</p>
-    <h1 class="names"><span>Rita</span><span class="and" data-t="and">and</span><span>Ervin</span></h1>
+    <p class="tracked kicker" data-t="kicker">Összeházasodunk</p>
+    <h1 class="names"><span>Rita</span><span class="and" data-t="and">és</span><span>Ervin</span></h1>
     <hr class="rule">
-    <p class="date" data-t="date">Saturday, 18 September 2027</p>
-    <p class="place" data-t="place">Szent Imre Church · Budapest</p>
-    <div class="countdown" role="timer" aria-label="Countdown">
-      <div><b id="cd-d">—</b><small data-t="days">Days</small></div>
-      <div><b id="cd-h">—</b><small data-t="hours">Hours</small></div>
-      <div><b id="cd-m">—</b><small data-t="mins">Mins</small></div>
-      <div><b id="cd-s">—</b><small data-t="secs">Secs</small></div>
+    <p class="date" data-t="date">2027. szeptember 18., szombat</p>
+    <p class="place" data-t="place">Szent Imre-templom · Budapest</p>
+    <div class="countdown" role="timer" aria-label="Visszaszámlálás a szertartásig" data-ta="ariaCountdown">
+      <div><b id="cd-d">—</b><small data-t="days">Nap</small></div>
+      <div><b id="cd-h">—</b><small data-t="hours">Óra</small></div>
+      <div><b id="cd-m">—</b><small data-t="mins">Perc</small></div>
+      <div><b id="cd-s">—</b><small data-t="secs">Másodperc</small></div>
     </div>
     <p class="count-note" id="cd-note"></p>
     <div class="cta">
-      <a class="btn" href="#rsvp" data-t="ctaRsvp">RSVP</a>
-      <a class="btn ghost" href="#day" data-t="ctaDay">See the day</a>
+      <a class="btn" href="#rsvp" data-t="ctaRsvp">Visszajelzés</a>
+      <a class="btn ghost" href="#day" data-t="ctaDay">A nap programja</a>
     </div>
     <img class="floral b" src="floral-bouquet.webp" alt="">
   </header>
 
   <section class="block wrap" id="day">
     <div class="sec-head">
-      <span class="script" data-t="dayScript">Our day</span>
-      <h2 data-t="dayTitle">Programme</h2>
-      <p data-t="dayHint">Tap a moment for details.</p>
+      <span class="script" data-t="dayScript">A nagy nap</span>
+      <h2 data-t="dayTitle">Program</h2>
+      <p data-t="dayHint">Koppints vagy kattints egy programpontra a részletekért.</p>
     </div>
     <ol class="tl" id="tl"></ol>
     <div class="tl-detail" id="tl-detail" aria-live="polite"><h3 id="tld-h"></h3><p id="tld-p"></p></div>
@@ -282,112 +285,112 @@ catch { document.documentElement.classList.add("gate-open"); }
 
   <section class="block wrap" id="venues">
     <div class="sec-head">
-      <span class="script" data-t="venScript">Where &amp; when</span>
-      <h2 data-t="venTitle">Ceremony &amp; reception</h2>
+      <span class="script" data-t="venScript">Hol és mikor</span>
+      <h2 data-t="venTitle">Szertartás és vacsora</h2>
     </div>
     <div class="venues">
       <article class="venue">
-        <span class="tracked" data-t="v1Kicker">Wedding &amp; christening</span>
-        <p class="time" data-t="v1Time">4:00 PM</p>
-        <h3 data-t="v1Name">Szent Imre Church</h3>
-        <p data-t="v1Desc"></p>
+        <span class="tracked" data-t="v1Kicker">Esküvő és keresztelő</span>
+        <p class="time" data-t="v1Time">16:00</p>
+        <h3 data-t="v1Name">Szent Imre-templom</h3>
+        <p data-t="v1Desc">Házasságkötésünket és egy keresztelőt közös szertartáson ünnepeljük a budai ciszterci Szent Imre-templomban.</p>
         <dl>
-          <dt data-t="address">Address</dt><dd>Villányi út 25, 1114 Budapest</dd>
-          <dt data-t="arrive">Please arrive</dt><dd data-t="arriveVal">From 3:30 PM</dd>
-          <dt data-t="getting">Getting there</dt><dd data-t="gettingVal"></dd>
+          <dt data-t="address">Cím</dt><dd>Villányi út 25, 1114 Budapest</dd>
+          <dt data-t="arrive">Érkezés</dt><dd data-t="arriveVal">15:30-tól</dd>
+          <dt data-t="getting">Megközelítés</dt><dd data-t="gettingVal">M4-es metróval vagy villamossal a Móricz Zsigmond körtérig, onnan pár perc séta</dd>
         </dl>
-        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Szent+Imre+templom+Villányi+út+25+Budapest" target="_blank" rel="noopener" data-t="openMaps">Open in Maps</a>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Szent+Imre+templom+Villányi+út+25+Budapest" target="_blank" rel="noopener" data-t="openMaps">Megnyitás a Google Térképen</a>
       </article>
       <article class="venue">
-        <span class="tracked" data-t="v2Kicker">Dinner &amp; dancing</span>
-        <p class="time" data-t="v2Time">7:00 PM</p>
-        <h3 data-t="v2Name">Reception</h3>
-        <p data-t="v2Desc"></p>
+        <span class="tracked" data-t="v2Kicker">Vacsora és tánc</span>
+        <p class="time" data-t="v2Time">19:00</p>
+        <h3 data-t="v2Name">Hemingway étterem</h3>
+        <p data-t="v2Desc">A Feneketlen-tó partján, kb. 10 perc sétára a templomtól. Vacsora, nyitótánc, torta és tánc egészen a hajnali 3 órai búcsúig.</p>
         <dl>
-          <dt data-t="address">Address</dt><dd>Kosztolányi Dezső tér 2, 1113 Budapest</dd>
-          <dt data-t="beforeDinner">Before dinner</dt><dd data-t="beforeDinnerVal"></dd>
-          <dt data-t="farewell">Farewell</dt><dd data-t="farewellVal">3:00 AM</dd>
+          <dt data-t="address">Cím</dt><dd>Kosztolányi Dezső tér 2, 1113 Budapest</dd>
+          <dt data-t="beforeDinner">Vacsora előtt</dt><dd data-t="beforeDinnerVal">17:15-kor csoportképek</dd>
+          <dt data-t="farewell">Búcsú</dt><dd data-t="farewellVal">03:00</dd>
         </dl>
-        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Hemingway+étterem+Kosztolányi+Dezső+tér+2+Budapest" target="_blank" rel="noopener" data-t="openMaps">Open in Maps</a>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Hemingway+étterem+Kosztolányi+Dezső+tér+2+Budapest" target="_blank" rel="noopener" data-t="openMaps">Megnyitás a Google Térképen</a>
       </article>
     </div>
   </section>
 
   <section class="block wrap" id="gallery">
     <div class="sec-head">
-      <span class="script" data-t="galScript">Our story</span>
-      <h2 data-t="galTitle">Gallery</h2>
+      <span class="script" data-t="galScript">Történetünk</span>
+      <h2 data-t="galTitle">Galéria</h2>
     </div>
     <div class="gallery" id="gal"></div>
-    <p class="gal-note" id="gal-note" data-t="galNote"></p>
+    <p class="gal-note" id="gal-note" data-t="galNote">A fotók hamarosan érkeznek. Az esküvő után itt lesznek a nap képei is.</p>
   </section>
 
   <section class="block wrap" id="rsvp">
     <div class="sec-head">
-      <span class="script" data-t="rsvpScript">Will you join us?</span>
-      <h2 data-t="rsvpTitle">RSVP</h2>
-      <p data-t="rsvpLead"></p>
+      <span class="script" data-t="rsvpScript">Velünk ünnepelsz?</span>
+      <h2 data-t="rsvpTitle">Visszajelzés</h2>
+      <p data-t="rsvpLead">Kérjük, 2027. július 1-ig jelezz vissza. Ha meggondolod magad, küldd el újra az űrlapot, a legfrissebb válaszodat vesszük figyelembe.</p>
     </div>
     <form class="rsvp-card" id="rsvp-form" novalidate>
       <div class="status" id="rsvp-status" hidden></div>
       <div class="field">
-        <label for="r-name" data-t="fName">Your full name</label>
+        <label for="r-name" data-t="fName">Teljes neved</label>
         <input type="text" id="r-name" autocomplete="name" required>
       </div>
       <fieldset class="field">
-        <legend data-t="fAnswer">Your answer</legend>
+        <legend data-t="fAnswer">Válaszod</legend>
         <div class="choice">
-          <label><input type="radio" name="attending" id="r-yes" value="yes" checked><span data-t="accepts">Accepts</span><small data-t="acceptsSub">with pleasure</small></label>
-          <label><input type="radio" name="attending" id="r-no" value="no"><span data-t="declines">Declines</span><small data-t="declinesSub">with regret</small></label>
+          <label><input type="radio" name="attending" id="r-yes" value="yes" checked><span data-t="accepts">Ott leszek</span><small data-t="acceptsSub">örömmel</small></label>
+          <label><input type="radio" name="attending" id="r-no" value="no"><span data-t="declines">Nem tudok jönni</span><small data-t="declinesSub">sajnos</small></label>
         </div>
       </fieldset>
       <div id="if-yes" class="grid2">
         <div class="field">
-          <label for="r-diet" data-t="fDiet">Food allergies or intolerances</label>
-          <input type="text" id="r-diet" data-tp="dietPh">
+          <label for="r-diet" data-t="fDiet">Ételallergia vagy -érzékenység</label>
+          <input type="text" id="r-diet" data-tp="dietPh" placeholder="Hagyd üresen, ha nincs">
         </div>
         <div class="field">
-          <label for="r-kids" data-t="fKids">Are you bringing children?</label>
-          <select id="r-kids"><option value="no" data-t="noOpt">No</option><option value="yes" data-t="yesOpt">Yes</option></select>
+          <label for="r-kids" data-t="fKids">Gyerekkel érkezel?</label>
+          <select id="r-kids"><option value="no" data-t="noOpt">Nem</option><option value="yes" data-t="yesOpt">Igen</option></select>
         </div>
         <div class="field">
-          <label for="r-count" data-t="fPlusQ">Are you bringing a +1?</label>
-          <select id="r-count"><option value="1" data-t="noOpt">No</option><option value="2" data-t="yesOpt">Yes</option></select>
+          <label for="r-count" data-t="fPlusQ">Hozol kísérőt?</label>
+          <select id="r-count"><option value="1" data-t="noOpt">Nem</option><option value="2" data-t="yesOpt">Igen</option></select>
         </div>
         <div class="field" id="plus-name-f" hidden>
-          <label for="r-plus" data-t="fPlus">Guest’s full name</label>
+          <label for="r-plus" data-t="fPlus">Kísérőd teljes neve</label>
           <input type="text" id="r-plus">
         </div>
         <div class="field" id="plus-meal-f" hidden>
-          <label for="r-plus-diet" data-t="fPlusDiet">Your guest’s food allergies</label>
-          <input type="text" id="r-plus-diet" data-tp="dietPh">
+          <label for="r-plus-diet" data-t="fPlusDiet">Kísérőd ételallergiája vagy -érzékenysége</label>
+          <input type="text" id="r-plus-diet" data-tp="dietPh" placeholder="Hagyd üresen, ha nincs">
         </div>
       </div>
-      <div class="submit-row"><button class="btn" type="submit" id="r-submit">Send my reply</button></div>
+      <div class="submit-row"><button class="btn" type="submit" id="r-submit">Válasz elküldése</button></div>
     </form>
 
   </section>
 
   <section class="block wrap" id="faq">
     <div class="sec-head">
-      <span class="script" data-t="faqScript">Good to know</span>
-      <h2 data-t="faqTitle">Questions</h2>
+      <span class="script" data-t="faqScript">Jó tudni</span>
+      <h2 data-t="faqTitle">Kérdések</h2>
     </div>
     <div class="faq" id="faq-list"></div>
   </section>
 </main>
 
 <footer>
-  <p class="names-sm">Rita<i data-t="and">and</i>Ervin</p>
-  <p data-t="footDate">18 · 09 · 2027 · Budapest</p>
+  <p class="names-sm">Rita<i data-t="and">és</i>Ervin</p>
+  <p data-t="footDate">2027 · 09 · 18 · Budapest</p>
   <img class="floral" src="floral-bouquet.webp" alt="">
 </footer>
 
-<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo">
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fotó" data-ta="ariaPhoto">
   <figure>
     <div class="stage" id="lb-stage"></div>
     <figcaption id="lb-cap"></figcaption>
-    <div class="lb-btns"><button class="btn ghost" type="button" id="lb-prev" data-t="prev">Previous</button><button class="btn" type="button" id="lb-close" data-t="close">Close</button><button class="btn ghost" type="button" id="lb-next" data-t="next">Next</button></div>
+    <div class="lb-btns"><button class="btn ghost" type="button" id="lb-prev" data-t="prev">Előző</button><button class="btn" type="button" id="lb-close" data-t="close">Bezárás</button><button class="btn ghost" type="button" id="lb-next" data-t="next">Következő</button></div>
   </figure>
 </div>
 
@@ -404,65 +407,65 @@ const PHOTOS = [ // add src:"photos/xyz.jpg" once photos are published with the 
 ];
 const TIMELINE = [ // [hour, minute, icon, title, detail]
   [16,0,"church",{en:"Wedding & christening",hu:"Esküvő és keresztelő"},{en:"Szent Imre Church, Villányi út 25. Please arrive from 3:30 PM.",hu:"Szent Imre-templom, Villányi út 25. Kérjük, 15:30-tól érkezzetek."}],
-  [17,15,"camera",{en:"Group pictures",hu:"Csoportképek"},{en:"On the church steps, with family and all of you.",hu:"A templom lépcsőjén, a családdal és veletek."}],
-  [19,0,"cloche",{en:"Dinner reception",hu:"Vacsora"},{en:"At Hemingway Restaurant by the Feneketlen-tó, a short walk from the church.",hu:"A Hemingway étteremben, a Feneketlen-tó partján, pár perc sétára a templomtól."}],
-  [21,0,"dance",{en:"Dancing & celebration",hu:"Tánc és mulatság"},{en:"First dance, cake, then the dance floor is yours. The bride’s dance at midnight.",hu:"Nyitótánc, torta, aztán a tánctér a tiétek. Éjfélkor menyecsketánc."}],
-  [27,0,"wave",{en:"Farewell",hu:"Búcsú"},{en:"The last song, the last toast, and everyone home safely.",hu:"Utolsó dal, utolsó koccintás, és mindenki épségben haza."}]
+  [17,15,"camera",{en:"Group photos",hu:"Csoportképek"},{en:"On the church steps, with family and all of you.",hu:"A templom lépcsőjén, a családdal és veletek."}],
+  [19,0,"cloche",{en:"Dinner reception",hu:"Vacsora"},{en:"At Hemingway Restaurant by the Feneketlen-tó, about a 10-minute walk from the church.",hu:"A Hemingway étteremben, a Feneketlen-tó partján, kb. 10 perc sétára a templomtól."}],
+  [21,0,"dance",{en:"Dancing & celebration",hu:"Tánc és mulatság"},{en:"First dance, cake, then the dance floor is yours. At midnight, the bride’s dance.",hu:"Nyitótánc, torta, aztán a tánctér a tiétek. Éjfélkor menyecsketánc."}],
+  [27,0,"wave",{en:"Farewell",hu:"Búcsú"},{en:"The last song, the last toast, and everyone heads home safely.",hu:"Utolsó dal, utolsó koccintás, majd mindenki épségben hazaindul."}]
 ];
 const FAQ = [
-  [{en:"What should I wear?",hu:"Mi legyen a dresscode?"},{en:"Elegant. Ladies, please avoid white and red.",hu:"Elegáns. Hölgyeknél a fehér és a piros szín kerülendő."}],
-  [{en:"Are children welcome?",hu:"Jöhetnek a gyerekek?"},{en:"Yes. The day includes a christening, and little ones are part of the celebration. Let us know in your RSVP if you’re bringing them.",hu:"Igen! A nap keresztelővel is jár, a kicsik is az ünnep részei. A visszajelzésben jelezd, ha hozod őket."}],
+  [{en:"What should I wear?",hu:"Mit vegyek fel?"},{en:"Elegant attire. Ladies, please avoid white and red.",hu:"Elegáns öltözetet kérünk. Hölgyek, kérjük, kerüljétek a fehér és a piros színt."}],
+  [{en:"Are children welcome?",hu:"Jöhetnek a gyerekek?"},{en:"Yes. The day also includes a christening, so little ones are very much part of the celebration. Let us know in your RSVP if you’re bringing them.",hu:"Igen! Az esküvőn keresztelő is lesz, így a kicsik is az ünnep részei. A visszajelzésben jelezd, ha hozod őket."}],
   [{en:"Can I bring a plus-one?",hu:"Hozhatok kísérőt?"},{en:"If your invitation names a guest, yes, and you can add them in the RSVP. If you’re not sure, just ask us.",hu:"Ha a meghívód kísérőre is szól, igen, a visszajelzésben megadhatod. Ha bizonytalan vagy, kérdezz bátran."}],
   [{en:"Will the ceremony be in Hungarian or English?",hu:"Milyen nyelven lesz a szertartás?"},{en:"In Hungarian.",hu:"Magyarul."}],
-  [{en:"Can I take photos during the ceremony?",hu:"Fotózhatok a szertartáson?"},{en:"We’d love an unplugged ceremony: phones away in the church. Our photographer has it covered, and at the group pictures at 5:15 PM you can snap away.",hu:"Szeretnénk, ha a templomban a telefonok a zsebben maradnának. A fotós mindent megörökít, a 17:15-ös csoportképeknél pedig már bátran fotózhattok."}],
+  [{en:"Can I take photos during the ceremony?",hu:"Fotózhatok a szertartáson?"},{en:"We’d love an unplugged ceremony: phones away in the church. Our photographer has it covered, and at the group photos at 5:15 PM you can snap away.",hu:"Szeretnénk, ha a templomban a telefonok a zsebben maradnának. A fotós mindent megörökít, a 17:15-ös csoportképeknél pedig már bátran fotózhattok."}],
   [{en:"How do I get to the church? Is there parking?",hu:"Hogyan jutok el a templomhoz? Van parkolás?"},{en:"Street parking around Villányi út is limited, so public transport or a taxi is easiest. The M4 metro and many trams stop at Móricz Zsigmond körtér, a short walk away.",hu:"A Villányi út környékén kevés a parkolóhely, ezért tömegközlekedéssel vagy taxival a legegyszerűbb. Az M4-es metró és számos villamos megáll a Móricz Zsigmond körtéren, ahonnan pár perc séta."}],
-  [{en:"Where is the reception?",hu:"Hol lesz a vacsora?"},{en:"At Hemingway Restaurant, Kosztolányi Dezső tér 2, by the Feneketlen-tó (Bottomless Lake). It’s about a 10-minute walk from the church through the park. Dinner starts at 7:00 PM.",hu:"A Hemingway étteremben (Kosztolányi Dezső tér 2.), a Feneketlen-tó partján. A templomtól kb. 10 perc séta a parkon át. A vacsora 19:00-kor kezdődik."}],
-  [{en:"What about gifts?",hu:"Mit hozzunk ajándékba?"},{en:"Your company is the greatest gift. If you’d like to give something more, a contribution towards our new chapter is warmly appreciated.",hu:"A legnagyobb ajándék, ha velünk vagytok. Ha mégis szeretnétek valamivel készülni, közös életünk kezdetéhez való hozzájárulásnak nagyon örülünk."}],
+  [{en:"Where is the reception?",hu:"Hol lesz a vacsora?"},{en:"At Hemingway Restaurant, Kosztolányi Dezső tér 2, by the Feneketlen-tó (Bottomless Lake), about a 10-minute walk from the church. Dinner starts at 7:00 PM.",hu:"A Hemingway étteremben (Kosztolányi Dezső tér 2.), a Feneketlen-tó partján, kb. 10 perc sétára a templomtól. A vacsora 19:00-kor kezdődik."}],
+  [{en:"What about gifts?",hu:"Mit hozzak ajándékba?"},{en:"Your company is the greatest gift. If you’d like to give something more, a contribution towards our new chapter would be warmly appreciated.",hu:"A legnagyobb ajándék, ha velünk vagytok. Ha mégis szeretnétek valamivel készülni, annak nagyon örülnénk, ha közös életünk kezdetéhez hozzájárulnátok."}],
   [{en:"What happens at midnight?",hu:"Mi lesz éjfélkor?"},{en:"Hungarian tradition: the bride changes into a new dress for the menyecsketánc, the bride’s dance, followed by a midnight snack that keeps everyone dancing until the farewell at 3:00 AM.",hu:"Ahogy illik: menyecsketánc a menyasszony új ruhájában, utána éjféli falatok, hogy hajnali 3-ig mindenki bírja."}]
 ];
 const T = {
   en:{
-    navDay:"Our day",navVenues:"Venues",navGallery:"Gallery",navFaq:"FAQ",navRsvp:"RSVP",
+    navDay:"Programme",navVenues:"Venues",navGallery:"Gallery",navFaq:"FAQ",navRsvp:"RSVP",ariaNav:"Sections",ariaCountdown:"Countdown to the ceremony",ariaPhoto:"Photo",
     kicker:"We’re getting married",and:"and",date:"Saturday, 18 September 2027",place:"Szent Imre Church · Budapest",
-    days:"Days",hours:"Hours",mins:"Mins",secs:"Secs",countNote:"until we say “igen”",today:"Today is the day",married:"Married since 18 September 2027",
+    days:"Days",hours:"Hours",mins:"Minutes",secs:"Seconds",countNote:"until we say “igen”",today:"Today is the day",married:"Married since 18 September 2027",
     ctaRsvp:"RSVP",ctaDay:"See the day",
-    dayScript:"Our day",dayTitle:"Programme",dayHint:"Tap a moment for details.",now:"Now",
+    dayScript:"Our day",dayTitle:"Programme",dayHint:"Tap or click an item for details.",now:"Now",
     venScript:"Where & when",venTitle:"Ceremony & reception",
-    v1Kicker:"Wedding & christening",v1Time:"4:00 PM",v1Name:"Szent Imre Church",v1Desc:"We celebrate our marriage and a christening in one ceremony, in the Cistercian church of Szent Imre in Buda.",
-    address:"Address",arrive:"Please arrive",arriveVal:"From 3:30 PM",getting:"Getting there",gettingVal:"M4 metro or tram to Móricz Zsigmond körtér, then a short walk",openMaps:"Open in Maps",
-    v2Kicker:"Dinner & dancing",v2Time:"7:00 PM",v2Name:"Hemingway Restaurant",v2Desc:"By the Feneketlen-tó, a short walk from the church. Dinner, our first dance, cake, and a dance floor open until the farewell at 3:00 AM.",
-    beforeDinner:"Before dinner",beforeDinnerVal:"Group pictures at 5:15 PM",farewell:"Farewell",farewellVal:"3:00 AM",
-    galScript:"Our story",galTitle:"Gallery",galNote:"Photos are on their way. After the wedding, the day itself will live here.",openPhoto:"Open photo: ",prev:"Previous",close:"Close",next:"Next",
+    v1Kicker:"Wedding & christening",v1Time:"4:00 PM",v1Name:"Szent Imre Church",v1Desc:"We will celebrate our marriage and a christening in a single ceremony at the Cistercian Church of Szent Imre in Buda.",
+    address:"Address",arrive:"Please arrive",arriveVal:"From 3:30 PM",getting:"Getting there",gettingVal:"M4 metro or tram to Móricz Zsigmond körtér, then a short walk",openMaps:"Open in Google Maps",
+    v2Kicker:"Dinner & dancing",v2Time:"7:00 PM",v2Name:"Hemingway Restaurant",v2Desc:"By the Feneketlen-tó, about a 10-minute walk from the church. Dinner, our first dance, cake, and a dance floor open until the farewell at 3:00 AM.",
+    beforeDinner:"Before dinner",beforeDinnerVal:"Group photos at 5:15 PM",farewell:"Farewell",farewellVal:"3:00 AM",
+    galScript:"Our story",galTitle:"Gallery",galNote:"Photos are on their way. After the wedding, you’ll find photos from the day here too.",openPhoto:"Open photo: ",prev:"Previous",close:"Close",next:"Next",
     rsvpScript:"Will you join us?",rsvpTitle:"RSVP",rsvpLead:"Kindly reply by 1 July 2027. Changed your mind? Send the form again and we’ll use your latest answer.",
-    fName:"Your full name",fAnswer:"Your answer",accepts:"Accepts",acceptsSub:"with pleasure",declines:"Declines",declinesSub:"with regret",
-    fMeal:"Your dinner",fish:"Fish",meat:"Meat",veg:"Vegetarian",fAdults:"Adults in your party",justMe:"Just me",mePlus:"Me + 1",
-    fPlus:"Guest’s full name",fPlusMeal:"Guest’s dinner",fKids:"Children coming with you",none:"None",fDiet:"Food allergies or intolerances",dietPh:"Leave empty if none",fKids:"Are you bringing children?",fPlusQ:"Are you bringing a +1?",fPlusDiet:"Your guest’s food allergies or intolerances",yesOpt:"Yes",noOpt:"No",
-    fSong:"A song that gets you dancing",fMsg:"A note for Rita & Ervin",send:"Send my reply",update:"Update my reply",sending:"Sending…",
+    fName:"Your full name",fAnswer:"Your answer",accepts:"I’ll be there",acceptsSub:"with pleasure",declines:"I can’t make it",declinesSub:"with regret",
+    fDiet:"Food allergies or intolerances",dietPh:"Leave empty if none",fKids:"Are you bringing children?",fPlusQ:"Are you bringing a plus-one?",
+    fPlus:"Your guest’s full name",fPlusDiet:"Your guest’s food allergies or intolerances",yesOpt:"Yes",noOpt:"No",
+    send:"Send my reply",update:"Update my reply",sending:"Sending…",
     needName:"Please add your name so we know who’s replying.",needPlus:"Please add your guest’s name.",
     noStore:"Online replies aren’t switched on yet. Please send your answer to Rita or Ervin directly.",
     thanksYes:n=>`Thank you, ${n}! We can’t wait to celebrate with you. You can update your reply here until 1 July.`,
     thanksNo:n=>`Thank you for letting us know, ${n}. You’ll be missed.`,
-    saveFail:"We couldn’t save your reply just now. Check your connection and press Send again.",
+    saveFail:"We couldn’t save your reply just now. Check your connection and try again.",
     haveReply:"You’ve already replied from this device. Change anything below and send again to update your answer.",
     faqScript:"Good to know",faqTitle:"Questions",footDate:"18 · 09 · 2027 · Budapest"
   },
   hu:{
-    navDay:"A nap",navVenues:"Helyszínek",navGallery:"Galéria",navFaq:"Kérdések",navRsvp:"Visszajelzés",
+    navDay:"Program",navVenues:"Helyszínek",navGallery:"Galéria",navFaq:"Kérdések",navRsvp:"Visszajelzés",ariaNav:"Szakaszok",ariaCountdown:"Visszaszámlálás a szertartásig",ariaPhoto:"Fotó",
     kicker:"Összeházasodunk",and:"és",date:"2027. szeptember 18., szombat",place:"Szent Imre-templom · Budapest",
-    days:"Nap",hours:"Óra",mins:"Perc",secs:"Mp",countNote:"az „igen”-ig",today:"Ma van a nagy nap",married:"2027. szeptember 18. óta házasok",
+    days:"Nap",hours:"Óra",mins:"Perc",secs:"Másodperc",countNote:"a boldogító igenig",today:"Ma van a nagy nap",married:"2027. szeptember 18. óta házasok vagyunk",
     ctaRsvp:"Visszajelzés",ctaDay:"A nap programja",
-    dayScript:"A nagy nap",dayTitle:"Program",dayHint:"Koppints egy pontra a részletekért.",now:"Most",
+    dayScript:"A nagy nap",dayTitle:"Program",dayHint:"Koppints vagy kattints egy programpontra a részletekért.",now:"Most",
     venScript:"Hol és mikor",venTitle:"Szertartás és vacsora",
-    v1Kicker:"Esküvő és keresztelő",v1Time:"16:00",v1Name:"Szent Imre-templom",v1Desc:"Házasságkötésünket és egy keresztelőt egy szertartás keretében ünnepeljük a budai ciszterci Szent Imre-templomban.",
-    address:"Cím",arrive:"Érkezés",arriveVal:"15:30-tól",getting:"Megközelítés",gettingVal:"M4-es metróval vagy villamossal a Móricz Zsigmond körtérig, onnan pár perc séta",openMaps:"Megnyitás térképen",
-    v2Kicker:"Vacsora és tánc",v2Time:"19:00",v2Name:"Hemingway étterem",v2Desc:"A Feneketlen-tó partján, pár perc sétára a templomtól. Vacsora, nyitótánc, torta, és tánc egészen a hajnali 3 órás búcsúig.",
+    v1Kicker:"Esküvő és keresztelő",v1Time:"16:00",v1Name:"Szent Imre-templom",v1Desc:"Házasságkötésünket és egy keresztelőt közös szertartáson ünnepeljük a budai ciszterci Szent Imre-templomban.",
+    address:"Cím",arrive:"Érkezés",arriveVal:"15:30-tól",getting:"Megközelítés",gettingVal:"M4-es metróval vagy villamossal a Móricz Zsigmond körtérig, onnan pár perc séta",openMaps:"Megnyitás a Google Térképen",
+    v2Kicker:"Vacsora és tánc",v2Time:"19:00",v2Name:"Hemingway étterem",v2Desc:"A Feneketlen-tó partján, kb. 10 perc sétára a templomtól. Vacsora, nyitótánc, torta és tánc egészen a hajnali 3 órai búcsúig.",
     beforeDinner:"Vacsora előtt",beforeDinnerVal:"17:15-kor csoportképek",farewell:"Búcsú",farewellVal:"03:00",
     galScript:"Történetünk",galTitle:"Galéria",galNote:"A fotók hamarosan érkeznek. Az esküvő után itt lesznek a nap képei is.",openPhoto:"Fotó megnyitása: ",prev:"Előző",close:"Bezárás",next:"Következő",
-    rsvpScript:"Velünk ünnepelsz?",rsvpTitle:"Visszajelzés",rsvpLead:"Kérjük, 2027. július 1-ig jelezz vissza. Ha meggondolod magad, küldd el újra az űrlapot, a legutolsó válaszodat vesszük figyelembe.",
+    rsvpScript:"Velünk ünnepelsz?",rsvpTitle:"Visszajelzés",rsvpLead:"Kérjük, 2027. július 1-ig jelezz vissza. Ha meggondolod magad, küldd el újra az űrlapot, a legfrissebb válaszodat vesszük figyelembe.",
     fName:"Teljes neved",fAnswer:"Válaszod",accepts:"Ott leszek",acceptsSub:"örömmel",declines:"Nem tudok jönni",declinesSub:"sajnos",
-    fMeal:"Vacsorád",fish:"Hal",meat:"Hús",veg:"Vegetáriánus",fAdults:"Felnőttek száma",justMe:"Csak én",mePlus:"Én + 1 fő",
-    fPlus:"Kísérőd teljes neve",fPlusMeal:"Kísérőd vacsorája",fKids:"Veled érkező gyerekek",none:"Nincs",fDiet:"Ételérzékenység, allergia",dietPh:"Hagyd üresen, ha nincs",fKids:"Gyereket hozol magaddal?",fPlusQ:"Hozol +1 főt magaddal?",fPlusDiet:"Kísérőd ételérzékenysége, allergiája",yesOpt:"Igen",noOpt:"Nem",
-    fSong:"Egy dal, amire biztosan táncolsz",fMsg:"Üzenet Ritának és Ervinnek",send:"Válasz elküldése",update:"Válasz módosítása",sending:"Küldés…",
+    fDiet:"Ételallergia vagy -érzékenység",dietPh:"Hagyd üresen, ha nincs",fKids:"Gyerekkel érkezel?",fPlusQ:"Hozol kísérőt?",
+    fPlus:"Kísérőd teljes neve",fPlusDiet:"Kísérőd ételallergiája vagy -érzékenysége",yesOpt:"Igen",noOpt:"Nem",
+    send:"Válasz elküldése",update:"Válasz módosítása",sending:"Küldés…",
     needName:"Kérjük, add meg a neved, hogy tudjuk, ki válaszol.",needPlus:"Kérjük, add meg a kísérőd nevét.",
     noStore:"Az online visszajelzés még nincs bekapcsolva. Kérjük, jelezz vissza közvetlenül Ritának vagy Ervinnek.",
     thanksYes:n=>`Köszönjük, ${n}! Alig várjuk, hogy együtt ünnepeljünk. Július 1-ig itt módosíthatod a válaszod.`,
@@ -687,6 +690,7 @@ function applyLang(l, persist = true){
   document.documentElement.lang = l;
   document.querySelectorAll("[data-t]").forEach(el => { const v = T[l][el.dataset.t]; if (typeof v === "string") el.textContent = v; });
   document.querySelectorAll("[data-tp]").forEach(el => el.placeholder = T[l][el.dataset.tp]);
+  document.querySelectorAll("[data-ta]").forEach(el => el.setAttribute("aria-label", T[l][el.dataset.ta]));
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
   tick(); renderTimeline(); renderGalleryText(); renderFaq(); renderStatus(); submitLabel();
 }
